@@ -1,0 +1,23 @@
+---
+name: Chrome - BBC
+author: Gladysfotsa <gladysfotsa99@gmail.com>
+description: Benchmarking Chrome loading BBC.com for 10 minutes
+
+architecture: Linux
+
+services:
+  chrome-container:
+    image: gladysfotsa/chrome_energy_image
+    environment:
+      URL_TO_VISIT: "https://www.bbc.com"
+    command: /usr/local/bin/chrome-entry.sh
+
+flow:
+  - name: Load BBC in Chrome
+    container: chrome-container
+    commands:
+      - type: console
+        command: echo "Opening BBC.com in Chrome..."
+      - type: console
+        command: sleep 600
+        note: Wait for Chrome to render the BBC page for 10 minutes
